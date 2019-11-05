@@ -8,9 +8,8 @@
   	
   	
       .messagingBox{
-          border: 2px solid grey; 
-          background-color: #dedede;
-           border-radius: 2PX;
+          border: 2px solid cyan; 
+          border-radius: 12PX;
             margin-top:1%;
 
 

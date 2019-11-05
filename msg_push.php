@@ -18,8 +18,8 @@ if (mysqli_connect_errno())
 
   }
   else{
-  		
- 	header ("location: chat.php?nm=".$sender_nm."");
+  		$sender_name = $_SESSION['sn_nm'];
+ 	header ("location: chat.php?nm=".$sender_name."");
   }
  
 
