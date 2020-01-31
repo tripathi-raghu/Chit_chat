@@ -8,7 +8,7 @@ $sender=$_SESSION['se_id'];
 $sender_nm =$_SESSION['sender_name'];
 
 
-$sql_tab="insert into chatdata (message_text,receiver,sender,date) values('$msg_text','$sender',$reciver, CURRENT_TIMESTAMP)";
+$sql_tab="insert into chatdata (message_text,receiver,sender,date) values('$msg_text','$sender','$reciver', CURRENT_TIMESTAMP)";
 //echo $sql_tab;
 mysqli_query($con,$sql_tab);
 

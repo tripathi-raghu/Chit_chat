@@ -1,3 +1,8 @@
+<?php
+ob_start();
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,7 +12,8 @@
     <style type="text/css">
       html, body {
     height: 100%;
-    margin: 0;         /* Reset default margin on the body element */
+    margin: 0;   
+     /*overflow: hidden;      Reset default margin on the body element */
 }
       .messageInput{
         position: fixed;
@@ -17,7 +23,18 @@
         margin-bottom: 1px;
         height: 6%;
       }
- /*     .reciverUser{
+      .backButton{
+        color: black;
+        background-color:#73f1ff;
+        border 0px solid white;
+        border-radius: 8px;
+        margin-top: 2%;
+        padding-bottom: 3px;
+        font-size: 14px;
+      }
+
+ /*     
+ .reciverUser{
         border: 2px solid grey;
         border-radius: 52px 100px 100px 0px;
         margin-bottom: 2%;
@@ -55,9 +72,23 @@
         text-align: right;
       }
  */   </style>
-  </head>
-  <body style="background-color: #000;color: #fff">
-    <!-- nav bar starts -->
+
+       <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+</head>
+<body   style="background-color:black">
+<!-- pre loader -->
+<!-- 
+<div class="preload" id="loader">
+    <div class="icon">
+        <img src="icon.png"></div>
+            
+    <div class="loader-frame">
+        <div class="loader1" id="loader1"></div>
+        <div class="loader2" id="loader2"></div>
+        
+    </div>
+</div> -->
+<!-- pre loader ends here -->    <!-- nav bar starts -->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <!-- Brand -->
       <a class="navbar-brand" href="user.php">
@@ -69,9 +100,9 @@
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
             <?php
-session_start();
+
 include 'connection.php';
-$reciver_name=$_SESSION['first_name'] ;
+$reciver_name=$_COOKIE['f_name'] ;
 // user number fetching start here for reciver
 $sql_tab="SELECT * FROM signup WHERE first_name='$reciver_name'";
 $dt=mysqli_query($con,$sql_tab);
@@ -111,57 +142,69 @@ $_SESSION['reciver_name']=$reciver_name;
 
 <!-- Something starting here -->
 
-<div class="container" style="border:4px solid #73f1ff; margin-top: 5px;  border-radius: 15px;height:100%;width: 100%;max-width: 100%; padding-bottom: 10%;">
-      <!-- skdjd -->
-      <!-- reciver name heading at the top center -->
-      <h2 style="text-align: center; color:#73f1ff; margin-top: 0px;">
-        <?php
-        
-$sender_name=$_GET['nm'];
-$rc_id=$_SESSION['rc_id'];
-$_SESSION['sender_name']=$sender_name;
-echo $sender_name;
+  <div class="container" style="border:4px solid #73f1ff; margin-top: 5px;  border-radius: 15px;height:100%;width: 100%;max-width: 100%; padding-bottom: 10%;">
+        <!-- skdjd -->
+        <!-- reciver name heading at the top center -->
+        <div class="row">
+          <div class="col-5 ">
+          <h3><a href="user.php" style="text-align: left"><button type="button" class="btn btn-outline-primary" style="margin-top: 2%;">Back</button> </a></h3>
+        </div>
+        <h2 style="text-align: center; color:#73f1ff; margin-top: 0px;">
 
-$_SESSION['sn_nm'] = $sender_name;
+          <?php
+          
+  $sender_name=$_GET['nm'];
+  $rc_id=$_SESSION['rc_id'];
+  $_SESSION['sender_name']=$sender_name;
+  echo $sender_name;
 
-// user number fetching start here for sender
-$sql_tab="SELECT * FROM signup WHERE first_name='$sender_name'";
-$dt=mysqli_query($con,$sql_tab);
-$a=mysqli_num_rows($dt);
+  $_SESSION['sn_nm'] = $sender_name;
 
-
-//echo $a;
-if ($a>0)
-{
-while($row= mysqli_fetch_array($dt,MYSQLI_ASSOC))
-{
-echo $row['user_id'];
-$se_id=$row['user_id'];
-$_SESSION['se_id']=$se_id;
+  // user number fetching start here for sender
+  $sql_tab="SELECT * FROM signup WHERE first_name='$sender_name'";
+  $dt=mysqli_query($con,$sql_tab);
+  $a=mysqli_num_rows($dt);
 
 
-}
-//echo $us_id;
-}
-else{
-echo "echo something goes wrong";
-}
-?>
-      </h2> 
-      <!-- end of reciver name heading at the top center -->
- 
+  //echo $a;
+  if ($a>0)
+  {
+  while($row= mysqli_fetch_array($dt,MYSQLI_ASSOC))
+  {
+  echo $row['user_id'];
+  $se_id=$row['user_id'];
+  $_SESSION['se_id']=$se_id;
+
+
+  }
+  //echo $us_id;
+  }
+  else{
+  echo "echo something goes wrong";
+  }
+  ?>
+        </h2> 
+       </div>
+        <!-- end of reciver name heading at the top center -->
+   
 
 
 
 
     <!-- iframe start here all the message display here -->
+  <!--   <div id="message"  onload="scrollToBottom()" >
+<script type="text/javascript">
+  document.getElementById('message').scrollTop = 9999999;
+</script> -->
+
+
    <?php 
 
 
-   echo "<iframe src="."msgDisplay.php?nm=".$_SESSION['se_id']."   style="." overflow:hidden;height:100%;width:100%; "." height="."100%"." width="."100%"."  frameborder="."0"." > </iframe>"; ?>
+   echo "<iframe src="."msgDisplay.php?nm=".$_SESSION['se_id']." height="."100%"." width="."100%"."  frameborder="."0"."  > </iframe>"; ?>
 
-   
-</div>
+   </div>
+
 
 
     <!-- message send box start  -->
@@ -187,5 +230,8 @@ echo "echo something goes wrong";
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
     </script>
+<!--   <script type="text/javascript" src="loader.js"></script> -->
+<!-- <script type="text/javascript" src="glue.js"></script> -->
   </body>
+
 </html>

@@ -1,3 +1,8 @@
+  <?php
+session_start();
+
+?>
+
   <!DOCTYPE html>
   <html>
   <head>
@@ -16,8 +21,22 @@
       }
   }
   </style>
-  </head>
-  <body style="background-color: #000">
+      <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body onload="myFunction()"  style="background-color:black">
+<!-- pre loader -->
+
+<div class="preload" id="loader">
+    <div class="icon">
+        <img src="icon.png"></div>
+            
+    <div class="loader-frame">
+        <div class="loader1" id="loader1"></div>
+        <div class="loader2" id="loader2"></div>
+        
+    </div>
+</div>
+<!-- pre loader ends here -->
   <!-- nav bar starts here -->
   <!-- nav bar starts -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -32,10 +51,11 @@
       <li class="nav-item dropdown " >
         <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
   		<?php
-  	session_start();
-  	$currentUser = $_SESSION['first_name']; 
+  	
+  	$currentUser = $_COOKIE['f_name']; 
       
       echo $currentUser;
+      echo $_COOKIE['testing'];
   		?>
           
         </a>
@@ -108,5 +128,6 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="loader.js"></script>
   </body>
   </html>

@@ -1,6 +1,19 @@
+<?php
+session_start();
+
+?>
+
+<!DOCTYPE html>
+<html>
 <head>
+  <title></title>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style type="text/css">
+      html,body{
+
+      }
+ 
       .messageInput{
         position: fixed;
         overflow: hidden;
@@ -50,11 +63,12 @@
   </head>
 
 
- <body style="background-color: #000;color: #fff">
+ <body style="background-color: #000;color: #fff" onload="scrollbottom()">
       <!-- start of message box codeing -->
-      
+
+
 <?php
-session_start();
+
 include 'connection.php';
 $sender_name = $_GET['nm'];
 $rc_id = $_SESSION['rc_id'];
@@ -63,7 +77,7 @@ $sender_nm = $_SESSION['sender_name'];
 $se_id = $_SESSION['sender_name'];
 $sec = "3";
 header("refresh: $sec; msgDisplay.php?nm=" . $sender_nm . "");
-$sql_tab = "SELECT * FROM chatdata  WHERE sender='$se_id' AND receiver='$rc_id' or receiver='$se_id' AND sender='$rc_id'  ORDER BY msg_number DESC";
+$sql_tab = "SELECT * FROM chatdata  WHERE sender='$se_id' AND receiver='$rc_id' or receiver='$se_id' AND sender='$rc_id'  ORDER BY msg_number ";
 $dt = mysqli_query($con, $sql_tab);
 $s = mysqli_num_rows($dt);
 //echo $se_id;
@@ -112,4 +126,13 @@ if ($s > 0) {
 ?>
      
     </div>
+    <div class="container" style="padding-top: 14%;"></div>
+    <script type="text/javascript">
+    	function scrollbottom(){
+    		window.scrollBy(0,999999999);
+    	}
+    </script>
+
   </body>
+
+</html>

@@ -1,0 +1,111 @@
+
+/*Splash screen*/
+.preload{
+  width: 100%;
+   height: 100%;
+   background:#000;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 1;
+
+}
+.icon{
+  text-align: center;
+    
+   
+animation:fading 4s infinite, size 4s infinite;
+}
+
+@keyframes fading{0%{opacity:0.5}50%{opacity:1}100%{opacity:0.5}}
+@keyframes size{0%{padding:1%}50%{padding: 0%}100%{padding: 1%}}
+
+@media screen and (min-device-width: 100px) and (max-device-width: 780px){
+    @keyframes size{0%{padding:5%}50%{padding: 0%}100%{padding: 5%}}  
+}
+
+ .loader-frame{
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  
+  position: relative;
+ }
+.loader1,.loader2{
+  position: absolute;
+  border: 5px solid transparent;
+  border-radius: 50%;
+}
+
+.loader1{
+  width:72px;
+  height: 72px;
+  border-top:5px solid #73f1ff ;
+  border-bottom: 5px solid #ff0000 ;
+  animation: clockwisespin 1s  infinite;
+}
+
+.loader1:hover{
+  width:72px;
+  height: 72px;
+  border-top:5px solid #ffffff ;
+  border-bottom: 5px solid #ffc600 ;
+  animation: anticlockwisespin 0.5s  infinite;
+}
+
+.loader2{
+  width:60px;
+  height: 60px;
+  border-left:5px solid #ffffff ;
+  border-right: 5px solid #ffc600 ;
+  top:5px;left:5px;
+  animation: anticlockwisespin 2s infinite;
+}
+.loader2:hover{
+  width:60px;
+  height: 60px;
+  border-left:5px solid #73f1ff ;
+  border-right: 5px solid #ff0000 ;
+  top:5px;left:5px;
+  animation:clockwisespin 0.5s infinite;
+}
+
+
+@keyframes clockwisespin{
+  from{transform: rotate(0deg);}
+  to{transform: rotate(180deg);}
+
+  from{transform: rotate(180deg);}
+  to{transform: rotate(0deg);}
+}
+
+
+@keyframes anticlockwisespin{
+  from{transform: rotate(0deg);}
+  to{transform: rotate(-1x80deg);}
+
+  from{transform: rotate(-180deg);}
+  to{transform: rotate(0deg);}
+}
+
+@keyframes fadeout{
+  from {opacity: 1;}
+  to{opacity: 0;}
+}
+
+
+
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+

@@ -23,6 +23,8 @@ if (mysqli_connect_errno())
   }
   else{
   	$_SESSION ['first_name'] = $fname ;
+  	setcookie("f_name", $_SESSION['first_name'], time() +60*60*365 );
+$_SESSION ['first_name'] = $_COOKIE['f_name'];
   	header ("location: user.php");
   }
  

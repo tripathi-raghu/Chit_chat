@@ -21,6 +21,7 @@ echo "Name ";
 echo $row['first_name'];
 $fn=$row['first_name'];
 
+
 echo "  Last Name ";
 echo $row['last_name'];
 
@@ -31,8 +32,15 @@ $em=$row['email'];
 }
 header ("location: user.php");
 $_SESSION['email']=$em;
+
+setcookie("testing", $_SESSION['email'], time() +60*60*365 );
+$_SESSION['email']=$_COOKIE['testing'];
 $_SESSION ['first_name'] = $fn ;
+setcookie("f_name", $_SESSION['first_name'], time() +60*60*365 );
+$_SESSION ['first_name'] = $_COOKIE['f_name'];
+
 }
+
 else
 {
 	$message = "sorry the E-mail and password does not exist";
